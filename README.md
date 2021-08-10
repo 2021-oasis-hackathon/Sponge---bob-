@@ -1,2 +1,2 @@
-# 14th Team Repository
+# SongeBob
 ### 프로토타입을 소개해주세요!
