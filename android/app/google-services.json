@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "656574570051",
+    "project_id": "flutter-login-gachitalre",
+    "storage_bucket": "flutter-login-gachitalre.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:656574570051:android:bd314827b1d62f52587ef6",
+        "android_client_info": {
+          "package_name": "com.example.osembly"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "656574570051-qk30op3r0d28ruoidaj3r27vsgtpcih6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.osembly",
+            "certificate_hash": "f02c3943961b20b13c60ed4e098b5896df47989f"
+          }
+        },
+        {
+          "client_id": "656574570051-bottjt052mvbs9dq6r270cksm4394pmh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDa4OxgTPDsgU8l6Nr46FnIUyueeGYTkNU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "656574570051-bottjt052mvbs9dq6r270cksm4394pmh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
