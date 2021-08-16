@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'firestore';
-
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -16,8 +15,45 @@ class _State extends State<LoginPage> {
     debugPrint(_id);
     debugPrint(_pw);
     debugPrint('clicked');
-    var documentSnapshot = await users.doc(documentId).get();
-    print(documentSnapshot.data())
+
+    FirebaseFirestore firestore = FirebaseFirestore.instance;
+
+    // 이 add 기능은 성공!
+    // student.add({
+    //   'name': 'Hyejin', // John Doe
+    //   'age': '23' // 42
+    // });
+
+
+    // var ds;
+    // 이 data 전체 다 뽑는 거도 성공!
+    // await FirebaseFirestore.instance
+    //   .collection('student')
+    //   .doc('20195035')
+    //   .get()
+    //   .then((DocumentSnapshot documentSnapshot) {
+    //     if (documentSnapshot.exists) {
+    //       ds = documentSnapshot.data();
+    //       print('Document data: ${documentSnapshot.data()}');
+    //     } else {
+    //       print('Document does not exist on the database');
+    //     }
+    //   });
+    
+    // if (ds is Map) { print('Hi, it is Map type'); }
+    // else { print('Nope, it is not Map type'); }
+    // print('YOOO~~, ${ds['name']}');
+
+    // 이 data field 특정해서 뽑는거도 성공!!!
+    // await FirebaseFirestore.instance
+    //   .collection('student')
+    //   .where('name', isEqualTo: 'Troy')
+    //   .get()
+    //   .then((QuerySnapshot querySnapshot) {
+    //     querySnapshot.docs.forEach((doc) {
+    //       print('YEYEYEYE ~~ ${doc['age']}');
+    //     });
+    //   });
   }
 
   @override
