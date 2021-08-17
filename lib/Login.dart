@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'Home.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -39,21 +40,31 @@ class _State extends State<LoginPage> {
     //       print('Document does not exist on the database');
     //     }
     //   });
-    
     // if (ds is Map) { print('Hi, it is Map type'); }
     // else { print('Nope, it is not Map type'); }
     // print('YOOO~~, ${ds['name']}');
 
+
     // 이 data field 특정해서 뽑는거도 성공!!!
-    // await FirebaseFirestore.instance
-    //   .collection('student')
-    //   .where('name', isEqualTo: 'Troy')
-    //   .get()
-    //   .then((QuerySnapshot querySnapshot) {
-    //     querySnapshot.docs.forEach((doc) {
-    //       print('YEYEYEYE ~~ ${doc['age']}');
-    //     });
-    //   });
+    await FirebaseFirestore.instance
+      .collection('users')
+      .where('id', isEqualTo: _id)
+      .get()
+      .then((QuerySnapshot querySnapshot) {
+        querySnapshot.docs.forEach((doc) {
+          // print('YEYEYEYE ~~ ${doc['age']}');
+          if(doc['password'] == _pw) {
+            print("login success");
+            Navigator.push(context,
+              MaterialPageRoute<void>(builder: (BuildContext context) {
+                return Second();
+              })
+            );
+          } else {
+            print("wrong password");
+          }
+        });
+      });
   }
 
   @override
