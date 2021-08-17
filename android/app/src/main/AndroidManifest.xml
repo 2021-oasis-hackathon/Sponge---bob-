@@ -1,8 +1,19 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.osembly">
+
+  <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+
    <application
+        android:name="io.flutter.app.FlutterApplication"
         android:label="osembly"
         android:icon="@mipmap/ic_launcher">
+        
+        <!-- Add your Google Maps API Key here -->
+        <meta-data android:name="com.google.android.geo.API_KEY"
+          android:value="AIzaSyDTd97jG-EsGUQ-kCMr-aQbdQEFJCownNM"
+          />
+
+          
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
@@ -27,6 +38,8 @@
               android:name="io.flutter.embedding.android.SplashScreenDrawable"
               android:resource="@drawable/launch_background"
               />
+
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
