@@ -7,6 +7,13 @@
         android:name="io.flutter.app.FlutterApplication"
         android:label="osembly"
         android:icon="@mipmap/ic_launcher">
+        
+        <!-- Add your Google Maps API Key here -->
+        <meta-data android:name="com.google.android.geo.API_KEY"
+          android:value="AIzaSyDTd97jG-EsGUQ-kCMr-aQbdQEFJCownNM"
+          />
+
+          
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
@@ -32,10 +39,6 @@
               android:resource="@drawable/launch_background"
               />
 
-            <!-- Add your Google Maps API Key here -->
-            <meta-data android:name="com.google.android.geo.API_KEY"
-              android:value="AIzaSyDTd97jG-EsGUQ-kCMr-aQbdQEFJCownNM"
-              />
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
