@@ -58,7 +58,7 @@ class _State extends State<LoginPage> {
             print("YoonJae login success");
             Navigator.push(context,
               MaterialPageRoute<void>(builder: (BuildContext context) {
-                return Second();
+                return MapScreen();
               })
             );
           } else {
