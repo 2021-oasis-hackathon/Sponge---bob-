@@ -1,36 +1,13 @@
-// import "package:flutter/material.dart";
-// import 'package:firebase_core/firebase_core.dart';
-// import 'Login.dart';
-
-// void main() async {
-//   WidgetsFlutterBinding.ensureInitialized();
-//   await Firebase.initializeApp();
-//   runApp(MyApp());  
-// }
-
-// class MyApp extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//         debugShowCheckedModeBanner: false,
-//         theme: ThemeData(primarySwatch: Colors.blue), home: LoginPage());
-//   }
-// }
-
 import 'package:flutter/material.dart';
-import 'package:osembly/secrets.dart'; // Stores the Google Maps API Key
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-
+import 'secrets.dart';
 import 'dart:math' show cos, sqrt, asin;
 
-void main() {
-  runApp(MyApp());
-}
 
-class MyApp extends StatelessWidget {
+class MapScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

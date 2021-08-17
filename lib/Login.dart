@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'Home.dart';
+import 'Map.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -54,17 +55,18 @@ class _State extends State<LoginPage> {
         querySnapshot.docs.forEach((doc) {
           // print('YEYEYEYE ~~ ${doc['age']}');
           if(doc['password'] == _pw) {
-            print("login success");
+            print("YoonJae login success");
             Navigator.push(context,
               MaterialPageRoute<void>(builder: (BuildContext context) {
                 return Second();
               })
             );
           } else {
-            print("wrong password");
+            print("YoonJae wrong password");
           }
         });
       });
+      print("YoonJae after login");
   }
 
   @override
