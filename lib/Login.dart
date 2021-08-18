@@ -90,7 +90,9 @@ class _State extends State<LoginPage> {
                   child: TextField(
                     controller: nameController,
                     decoration: InputDecoration(
-                      border: OutlineInputBorder(),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
                       labelText: 'ID',
                       hintText: '아이디를 입력해주세요',
                       contentPadding: EdgeInsets.all(15),
@@ -103,7 +105,9 @@ class _State extends State<LoginPage> {
                     obscureText: true,
                     controller: passwordController,
                     decoration: InputDecoration(
-                      border: OutlineInputBorder(),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
                       labelText: 'PASSWORD',
                       hintText: '비밀번호를 입력해주세요',
                       contentPadding: EdgeInsets.all(15),

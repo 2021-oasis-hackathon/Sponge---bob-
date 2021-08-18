@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:geocoding/geocoding.dart';
@@ -203,6 +204,27 @@ class _MapViewState extends State<MapView> {
       print(
         'DESTINATION COORDINATES: ($destinationLatitude, $destinationLongitude)',
       );
+
+      CollectionReference users = FirebaseFirestore.instance.collection('users');
+      await FirebaseFirestore.instance
+        .collection('users')
+        .where('id', isEqualTo: id)
+        .get()
+        .then((QuerySnapshot querySnapshot) {
+          querySnapshot.docs.forEach((doc) {
+            var docId = doc.id;
+            users.doc(docId).set({
+              'strLat': startLatitude,
+              'strLng': startLongitude,
+              'desLat': destinationLatitude,
+              'desLng': destinationLongitude,
+            }, SetOptions( merge: true ));
+          });
+        });
+        strLat = startLatitude;
+        strLng = startLongitude;
+        desLat = destinationLatitude;
+        desLng = destinationLongitude;
 
       // Calculating to check that the position relative
       // to the frame, and pan & zoom the camera accordingly.
@@ -454,6 +476,8 @@ class _MapViewState extends State<MapView> {
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20.0),
                               ),
+
+                              
                             ),
                           ),
                           //밑의 예약시간 설정버튼은 경로설정 버튼을 복붙함, 수정필요
@@ -463,9 +487,24 @@ class _MapViewState extends State<MapView> {
                                   showTitleActions: true,
                                   minTime: DateTime(2021, 5, 5, 20, 50),
                                   maxTime: DateTime(2022, 7, 7, 05, 09),
-                                  onChanged: (date) {}, onConfirm: (date) {
-                                    print(
-                                    'confirm ${date.toString().substring(11, 16)}');
+                                  onChanged: (date) {}, onConfirm: (date) async {
+                                    CollectionReference users = FirebaseFirestore.instance.collection('users');
+                                    await FirebaseFirestore.instance
+                                      .collection('users')
+                                      .where('id', isEqualTo: id)
+                                      .get()
+                                      .then((QuerySnapshot querySnapshot) {
+                                        querySnapshot.docs.forEach((doc) {
+                                          var docId = doc.id;
+                                          users.doc(docId).set({
+                                            'timeH' : int.parse(date.toString().substring(11, 13)),
+                                            'timeM' :int.parse(date.toString().substring(14, 16))
+                                            }, SetOptions( merge: true ));
+                                          print("yesss done!");
+                                        });
+                                      });
+                                      timeH = int.parse(date.toString().substring(11, 13));
+                                      timeM = int.parse(date.toString().substring(14, 16));
                                     Navigator.push(context,
                                       MaterialPageRoute<void>(builder: (BuildContext context) {
                                     return UserInformation();

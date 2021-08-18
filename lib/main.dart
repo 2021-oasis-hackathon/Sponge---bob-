@@ -4,6 +4,13 @@ import 'Login.dart';
 
 var id;
 var pw;
+var timeH;
+var timeM;
+var strLat;
+var strLng;
+var desLat;
+var desLng;
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
