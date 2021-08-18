@@ -133,13 +133,21 @@ class _UserInformationState extends State<UserInformation> {
                                     fontWeight: FontWeight.bold,
                                     fontSize: 20.0),
                                   ),
-                                  subtitle: Text(
-                                    '전화번호  :  ${data['phone']}',
+                                  subtitle: data['approval'] == true?
+                                    Text(
+                                      '전화번호  :  ${data['phone']}',
+                                      style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 15.0,
+                                      letterSpacing: 0.5),
+                                    )
+                                    :Text(
+                                    '전화번호  :  (쉿~! 아직이예요!..)',
                                     style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 15.0,
                                     letterSpacing: 0.5),
-                                  ),
+                                    ),
                                   trailing: data['approval'] == true?
                                     Icon(
                                       Icons.done,
