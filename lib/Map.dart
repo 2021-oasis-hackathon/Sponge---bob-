@@ -5,11 +5,13 @@ import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'secrets.dart';
+import 'main.dart';
 import 'dart:math' show cos, sqrt, asin;
 
 class MapScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    print("in MAPAP id is ${id}, pw is ${pw}");
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Maps',

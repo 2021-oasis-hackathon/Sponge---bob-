@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'Home.dart';
 import 'Userguide.dart';
+import 'main.dart';
+
+
 
 class LoginPage extends StatefulWidget {
   @override
@@ -13,6 +16,8 @@ class _State extends State<LoginPage> {
   TextEditingController passwordController = TextEditingController();
 
   void clickLogin(String _id, String _pw) async {
+    id = _id;
+    pw = _pw;
     debugPrint(_id);
     debugPrint(_pw);
     debugPrint('clicked');
