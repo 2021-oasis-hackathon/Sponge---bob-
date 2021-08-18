@@ -50,6 +50,7 @@ class _UserInformationState extends State<UserInformation> {
         int lenFul = snapshot.data!.docs
           .where((DocumentSnapshot documentSnapshot) => coordinateDistance(strLat, strLng, documentSnapshot['strLat'], documentSnapshot['strLng']) <= 0.5)
           .where((DocumentSnapshot documentSnapshot) => coordinateDistance(desLat, desLng, documentSnapshot['desLat'], documentSnapshot['desLng']) <= 0.5)
+          .where((DocumentSnapshot documentSnapshot) => diffTime(timeH, timeM, documentSnapshot['timeH'], documentSnapshot['timeM']) <= 20)
           .length;
         print('NOONA $lenFul');
         int lenApr = snapshot.data!.docs
@@ -80,7 +81,7 @@ class _UserInformationState extends State<UserInformation> {
                   width: 250,
                   height: 300,
                   image: lenFul == lenApr?
-                    AssetImage('asset/matching.jpg')
+                    AssetImage('asset/matching.png')
                     :AssetImage('asset/etiquette.png')
                   )),
               Positioned.fill(
