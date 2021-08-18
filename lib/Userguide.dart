@@ -48,8 +48,14 @@ class SlideScreen extends StatelessWidget {
               return MapScreen();
             }));
           },
-          backgroundColor: Colors.pink[600],
-          label: const Text('이용안내를 확인했습니다'),
+          backgroundColor: Color(0xffE20080),
+          label: const Text(
+            '안내사항을 확인했습니다',
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
           isExtended: true,
         ),
       ),

@@ -81,13 +81,14 @@ class _State extends State<LoginPage> {
                     width: 200,
                     child: Image.asset('asset/gachiLogo.png')),
                 Container(
-                  padding: EdgeInsets.fromLTRB(40, 30, 40, 5),
+                  padding: EdgeInsets.fromLTRB(40, 21, 40, 5),
                   child: TextField(
                     controller: nameController,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'ID',
                       hintText: '아이디를 입력해주세요',
+                      contentPadding: EdgeInsets.all(20),
                     ),
                   ),
                 ),
@@ -100,21 +101,28 @@ class _State extends State<LoginPage> {
                       border: OutlineInputBorder(),
                       labelText: 'PASSWORD',
                       hintText: '비밀번호를 입력해주세요',
+                      contentPadding: EdgeInsets.all(20),
                     ),
                   ),
                 ),
                 Container(
                   height: 50,
-                  margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
+                  margin: EdgeInsets.fromLTRB(0, 15, 0, 0),
                   padding: EdgeInsets.fromLTRB(40, 10, 40, 0),
                   child: FloatingActionButton(
-                    child: Text('로그인 하기'),
+                    child: Text(
+                      '로그인 하기',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                     onPressed: () {
                       // debugPrint(nameController.text);
                       // debugPrint(passwordController.text);
                       clickLogin(nameController.text, passwordController.text);
                     },
-                    backgroundColor: Colors.pink[600],
+                    backgroundColor: Color(0xffE20080),
                     isExtended: true,
                   ),
                 ),
@@ -124,7 +132,7 @@ class _State extends State<LoginPage> {
                     Text('아직 회원이 아니신가요?'),
                     TextButton(
                       style: TextButton.styleFrom(
-                        primary: Colors.pink,
+                        primary: Color(0xffE20080),
                       ),
                       child: Text(
                         '회원가입',

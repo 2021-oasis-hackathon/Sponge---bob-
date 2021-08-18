@@ -10,6 +10,7 @@ class MapScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Maps',
       theme: ThemeData(
         primarySwatch: Colors.blue,
@@ -55,7 +56,7 @@ class _MapViewState extends State<MapView> {
     required String label,
     required String hint,
     required double width,
-    required Icon prefixIcon,
+    Widget? prefixIcon,
     Widget? suffixIcon,
     required Function(String) locationCallback,
   }) {
@@ -347,50 +348,13 @@ class _MapViewState extends State<MapView> {
                 padding: const EdgeInsets.only(left: 10.0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    ClipOval(
-                      child: Material(
-                        color: Colors.blue.shade100, // button color
-                        child: InkWell(
-                          splashColor: Colors.blue, // inkwell color
-                          child: SizedBox(
-                            width: 50,
-                            height: 50,
-                            child: Icon(Icons.add),
-                          ),
-                          onTap: () {
-                            mapController.animateCamera(
-                              CameraUpdate.zoomIn(),
-                            );
-                          },
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 20),
-                    ClipOval(
-                      child: Material(
-                        color: Colors.blue.shade100, // button color
-                        child: InkWell(
-                          splashColor: Colors.blue, // inkwell color
-                          child: SizedBox(
-                            width: 50,
-                            height: 50,
-                            child: Icon(Icons.remove),
-                          ),
-                          onTap: () {
-                            mapController.animateCamera(
-                              CameraUpdate.zoomOut(),
-                            );
-                          },
-                        ),
-                      ),
-                    )
-                  ],
+                  children: <Widget>[],
                 ),
               ),
             ),
             // Show the place input fields & button for
             // showing the route
+            SizedBox(height: 40),
             SafeArea(
               child: Align(
                 alignment: Alignment.topCenter,
@@ -409,22 +373,9 @@ class _MapViewState extends State<MapView> {
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: <Widget>[
-                          Text(
-                            '위치 검색',
-                            style: TextStyle(fontSize: 20.0),
-                          ),
-                          SizedBox(height: 10),
                           _textField(
-                              label: 'Start',
-                              hint: 'Choose starting point',
-                              prefixIcon: Icon(Icons.looks_one),
-                              suffixIcon: IconButton(
-                                icon: Icon(Icons.my_location),
-                                onPressed: () {
-                                  startAddressController.text = _currentAddress;
-                                  _startAddress = _currentAddress;
-                                },
-                              ),
+                              label: '출발지',
+                              hint: '출발지를 입력하세요',
                               controller: startAddressController,
                               focusNode: startAddressFocusNode,
                               width: width,
@@ -435,9 +386,8 @@ class _MapViewState extends State<MapView> {
                               }),
                           SizedBox(height: 10),
                           _textField(
-                              label: 'Destination',
-                              hint: 'Choose destination',
-                              prefixIcon: Icon(Icons.looks_two),
+                              label: '도착지',
+                              hint: '도착지를 입력하세요',
                               controller: destinationAddressController,
                               focusNode: desrinationAddressFocusNode,
                               width: width,
@@ -447,16 +397,6 @@ class _MapViewState extends State<MapView> {
                                 });
                               }),
                           SizedBox(height: 10),
-                          Visibility(
-                            visible: _placeDistance == null ? false : true,
-                            child: Text(
-                              'DISTANCE: $_placeDistance km',
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
                           SizedBox(height: 5),
                           ElevatedButton(
                             onPressed: (_startAddress != '' &&
@@ -478,16 +418,14 @@ class _MapViewState extends State<MapView> {
                                         ScaffoldMessenger.of(context)
                                             .showSnackBar(
                                           SnackBar(
-                                            content: Text(
-                                                'Distance Calculated Sucessfully'),
+                                            content: Text('최단경로 검색완료!'),
                                           ),
                                         );
                                       } else {
                                         ScaffoldMessenger.of(context)
                                             .showSnackBar(
                                           SnackBar(
-                                            content: Text(
-                                                'Error Calculating Distance'),
+                                            content: Text('경로탐색을 실패했습니다'),
                                           ),
                                         );
                                       }
@@ -495,17 +433,73 @@ class _MapViewState extends State<MapView> {
                                   }
                                 : null,
                             child: Padding(
-                              padding: const EdgeInsets.all(8.0),
+                              padding: const EdgeInsets.only(
+                                  left: 90.0, right: 90.0),
                               child: Text(
-                                'Show Route'.toUpperCase(),
+                                '경로 설정',
                                 style: TextStyle(
                                   color: Colors.white,
-                                  fontSize: 20.0,
+                                  fontSize: 15.0,
+                                  fontWeight: FontWeight.bold,
                                 ),
                               ),
                             ),
                             style: ElevatedButton.styleFrom(
-                              primary: Colors.red,
+                              primary: Color(0xffE20080),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20.0),
+                              ),
+                            ),
+                          ),
+                          //밑의 예약시간 설정버튼은 경로설정 버튼을 복붙함, 수정필요
+                          ElevatedButton(
+                            onPressed: (_startAddress != '' &&
+                                    _destinationAddress != '')
+                                ? () async {
+                                    startAddressFocusNode.unfocus();
+                                    desrinationAddressFocusNode.unfocus();
+                                    setState(() {
+                                      if (markers.isNotEmpty) markers.clear();
+                                      if (polylines.isNotEmpty)
+                                        polylines.clear();
+                                      if (polylineCoordinates.isNotEmpty)
+                                        polylineCoordinates.clear();
+                                      _placeDistance = null;
+                                    });
+
+                                    _calculateDistance().then((isCalculated) {
+                                      if (isCalculated) {
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          SnackBar(
+                                            content: Text('최단경로 검색완료!'),
+                                          ),
+                                        );
+                                      } else {
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          SnackBar(
+                                            content: Text('경로탐색을 실패했습니다'),
+                                          ),
+                                        );
+                                      }
+                                    });
+                                  }
+                                : null,
+                            child: Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 77.0, right: 77.0),
+                              child: Text(
+                                '예약시간 설정',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 15.0,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                            style: ElevatedButton.styleFrom(
+                              primary: Color(0xffE20080),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20.0),
                               ),
@@ -526,13 +520,13 @@ class _MapViewState extends State<MapView> {
                   padding: const EdgeInsets.only(right: 10.0, bottom: 10.0),
                   child: ClipOval(
                     child: Material(
-                      color: Colors.orange.shade100, // button color
+                      color: Colors.blue[300], // button color
                       child: InkWell(
-                        splashColor: Colors.orange, // inkwell color
+                        splashColor: Colors.blue[200], // inkwell color
                         child: SizedBox(
                           width: 56,
                           height: 56,
-                          child: Icon(Icons.my_location),
+                          child: Icon(Icons.location_on),
                         ),
                         onTap: () {
                           mapController.animateCamera(
