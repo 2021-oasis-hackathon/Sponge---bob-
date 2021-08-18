@@ -456,15 +456,13 @@ class _MapViewState extends State<MapView> {
                           ElevatedButton(
                             onPressed: () {
                               DatePicker.showDateTimePicker(context,
-                                  showTitleActions: true, onChanged: (date) {
-                                print('change $date in time zone ' +
-                                    date.timeZoneOffset.inHours.toString());
-                              }, onConfirm: (date) {
-                                print('confirm $date');
-                              },
-                                  currentTime:
-                                      DateTime(2021, 08, 19, 13, 12, 34),
-                                  locale: LocaleType.ko);
+                                  showTitleActions: true,
+                                  minTime: DateTime(2021, 5, 5, 20, 50),
+                                  maxTime: DateTime(2022, 7, 7, 05, 09),
+                                  onChanged: (date) {}, onConfirm: (date) {
+                                print(
+                                    'confirm ${date.toString().substring(11, 16)}');
+                              }, locale: LocaleType.ko);
                             },
                             child: Padding(
                               padding: const EdgeInsets.only(
