@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'Home.dart';
-import 'Map.dart';
+import 'Userguide.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -9,7 +9,6 @@ class LoginPage extends StatefulWidget {
 }
 
 class _State extends State<LoginPage> {
-
   TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
@@ -25,7 +24,6 @@ class _State extends State<LoginPage> {
     //   'name': 'Hyejin', // John Doe
     //   'age': '23' // 42
     // });
-
 
     // var ds;
     // 이 data 전체 다 뽑는 거도 성공!
@@ -45,28 +43,26 @@ class _State extends State<LoginPage> {
     // else { print('Nope, it is not Map type'); }
     // print('YOOO~~, ${ds['name']}');
 
-
     // 이 data field 특정해서 뽑는거도 성공!!!
     await FirebaseFirestore.instance
-      .collection('users')
-      .where('id', isEqualTo: _id)
-      .get()
-      .then((QuerySnapshot querySnapshot) {
-        querySnapshot.docs.forEach((doc) {
-          // print('YEYEYEYE ~~ ${doc['age']}');
-          if(doc['password'] == _pw) {
-            print("YoonJae login success");
-            Navigator.push(context,
+        .collection('users')
+        .where('id', isEqualTo: _id)
+        .get()
+        .then((QuerySnapshot querySnapshot) {
+      querySnapshot.docs.forEach((doc) {
+        // print('YEYEYEYE ~~ ${doc['age']}');
+        if (doc['password'] == _pw) {
+          print("YoonJae login success");
+          Navigator.push(context,
               MaterialPageRoute<void>(builder: (BuildContext context) {
-                return MapScreen();
-              })
-            );
-          } else {
-            print("YoonJae wrong password");
-          }
-        });
+            return SlideScreen();
+          }));
+        } else {
+          print("YoonJae wrong password");
+        }
       });
-      print("YoonJae after login");
+    });
+    print("YoonJae after login");
   }
 
   @override
@@ -118,28 +114,29 @@ class _State extends State<LoginPage> {
                       onPressed: () {
                         // debugPrint(nameController.text);
                         // debugPrint(passwordController.text);
-                        clickLogin(nameController.text, passwordController.text);
+                        clickLogin(
+                            nameController.text, passwordController.text);
                       },
                     )),
                 Container(
                     child: Row(
-                      children: <Widget>[
-                        Text('Does not have account?'),
-                        TextButton(
-                          style: TextButton.styleFrom(
-                            primary: Colors.pink,
-                          ),
-                          child: Text(
-                            'Sign in',
-                            style: TextStyle(fontSize: 20),
-                          ),
-                          onPressed: () {
-                            //signup screen
-                          },
-                        )
-                      ],
-                      mainAxisAlignment: MainAxisAlignment.center,
-                    ))
+                  children: <Widget>[
+                    Text('Does not have account?'),
+                    TextButton(
+                      style: TextButton.styleFrom(
+                        primary: Colors.pink,
+                      ),
+                      child: Text(
+                        'Sign in',
+                        style: TextStyle(fontSize: 20),
+                      ),
+                      onPressed: () {
+                        //signup screen
+                      },
+                    )
+                  ],
+                  mainAxisAlignment: MainAxisAlignment.center,
+                ))
               ],
             )));
   }
