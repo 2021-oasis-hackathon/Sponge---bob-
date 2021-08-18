@@ -41,7 +41,7 @@ class SlideScreen extends StatelessWidget {
             ),
           ],
         ),
-        floatingActionButton: FloatingActionButton(
+        floatingActionButton: FloatingActionButton.extended(
           onPressed: () {
             Navigator.push(context,
                 MaterialPageRoute<void>(builder: (BuildContext context) {
@@ -49,8 +49,7 @@ class SlideScreen extends StatelessWidget {
             }));
           },
           backgroundColor: Colors.pink[600],
-          tooltip: 'Increment',
-          child: Text('확인'),
+          label: const Text('이용안내를 확인했습니다'),
           isExtended: true,
         ),
       ),
