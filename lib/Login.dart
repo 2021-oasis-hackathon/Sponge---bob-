@@ -88,7 +88,7 @@ class _State extends State<LoginPage> {
                       border: OutlineInputBorder(),
                       labelText: 'ID',
                       hintText: '아이디를 입력해주세요',
-                      contentPadding: EdgeInsets.all(20),
+                      contentPadding: EdgeInsets.all(15),
                     ),
                   ),
                 ),
@@ -101,19 +101,19 @@ class _State extends State<LoginPage> {
                       border: OutlineInputBorder(),
                       labelText: 'PASSWORD',
                       hintText: '비밀번호를 입력해주세요',
-                      contentPadding: EdgeInsets.all(20),
+                      contentPadding: EdgeInsets.all(15),
                     ),
                   ),
                 ),
                 Container(
                   height: 50,
-                  margin: EdgeInsets.fromLTRB(0, 15, 0, 0),
-                  padding: EdgeInsets.fromLTRB(40, 10, 40, 0),
+                  margin: EdgeInsets.fromLTRB(0, 30, 0, 4),
+                  padding: EdgeInsets.fromLTRB(40, 0, 40, 0),
                   child: FloatingActionButton(
                     child: Text(
                       '로그인 하기',
                       style: TextStyle(
-                        fontSize: 16,
+                        fontSize: 18,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
