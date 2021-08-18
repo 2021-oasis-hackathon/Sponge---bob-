@@ -54,19 +54,19 @@ class _State extends State<LoginPage> {
         .where('id', isEqualTo: _id)
         .get()
         .then((QuerySnapshot querySnapshot) {
-      querySnapshot.docs.forEach((doc) {
-        // print('YEYEYEYE ~~ ${doc['age']}');
-        if (doc['password'] == _pw) {
-          print("YoonJae login success");
-          Navigator.push(context,
-              MaterialPageRoute<void>(builder: (BuildContext context) {
-            return SlideScreen();
-          }));
-        } else {
-          print("YoonJae wrong password");
-        }
-      });
-    });
+          querySnapshot.docs.forEach((doc) {
+          // print('YEYEYEYE ~~ ${doc['age']}');
+          if (doc['password'] == _pw) {
+            print("YoonJae login success");
+            Navigator.push(context,
+                MaterialPageRoute<void>(builder: (BuildContext context) {
+              return SlideScreen();
+            }));
+          } else {
+            print("YoonJae wrong password");
+          }
+          });
+        });
     print("YoonJae after login");
   }
 

@@ -4,8 +4,10 @@ import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+import 'package:osembly/User.dart';
 import 'secrets.dart';
 import 'main.dart';
+import 'User.dart';
 import 'dart:math' show cos, sqrt, asin;
 
 class MapScreen extends StatelessWidget {
@@ -462,9 +464,13 @@ class _MapViewState extends State<MapView> {
                                   minTime: DateTime(2021, 5, 5, 20, 50),
                                   maxTime: DateTime(2022, 7, 7, 05, 09),
                                   onChanged: (date) {}, onConfirm: (date) {
-                                print(
+                                    print(
                                     'confirm ${date.toString().substring(11, 16)}');
-                              }, locale: LocaleType.ko);
+                                    Navigator.push(context,
+                                      MaterialPageRoute<void>(builder: (BuildContext context) {
+                                    return UserInformation();
+                                    }));
+                                  }, locale: LocaleType.ko);
                             },
                             child: Padding(
                               padding: const EdgeInsets.only(
