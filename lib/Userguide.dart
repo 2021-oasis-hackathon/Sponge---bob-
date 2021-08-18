@@ -51,6 +51,7 @@ class SlideScreen extends StatelessWidget {
           backgroundColor: Colors.pink[600],
           tooltip: 'Increment',
           child: Text('확인'),
+          isExtended: true,
         ),
       ),
     );
