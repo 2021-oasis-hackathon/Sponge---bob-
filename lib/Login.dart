@@ -108,7 +108,7 @@ class _State extends State<LoginPage> {
                 Container(
                   height: 50,
                   margin: EdgeInsets.fromLTRB(0, 15, 0, 0),
-                  padding: EdgeInsets.fromLTRB(40, 10, 40, 0),
+                  padding: EdgeInsets.fromLTRB(40, 6, 40, 0),
                   child: FloatingActionButton(
                     child: Text(
                       '로그인 하기',
