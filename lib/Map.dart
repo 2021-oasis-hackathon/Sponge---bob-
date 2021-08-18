@@ -6,7 +6,6 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'secrets.dart';
 import 'dart:math' show cos, sqrt, asin;
 
-
 class MapScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -399,7 +398,7 @@ class _MapViewState extends State<MapView> {
                   padding: const EdgeInsets.only(top: 10.0),
                   child: Container(
                     decoration: BoxDecoration(
-                      color: Colors.white70,
+                      color: Colors.white,
                       borderRadius: BorderRadius.all(
                         Radius.circular(20.0),
                       ),
@@ -411,7 +410,7 @@ class _MapViewState extends State<MapView> {
                         mainAxisSize: MainAxisSize.min,
                         children: <Widget>[
                           Text(
-                            'Places',
+                            '위치 검색',
                             style: TextStyle(fontSize: 20.0),
                           ),
                           SizedBox(height: 10),
