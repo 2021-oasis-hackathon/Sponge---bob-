@@ -22,36 +22,23 @@ class _UserInformationState extends State<UserInformation> {
     return 12742 * asin(sqrt(a));
   }
 
-    num diffTime(h1, m1, h2, m2) {
-      num res = 0;
-      if(h1 > h2) {
-        res = res + 60 * (h1 - h2);
-
-        if(m1 - m2 > 0) {
-          res = res + (m1 - m2);
-        }
-        else {
-          res = res - (m2 - m1);
-        }
-      } else if(h1 < h2) {
-        res = res + 60 * (h2 - h1);
-
-        if(m2 - m1 > 0) {
-          res = res + (m2 - m1);
-        }
-        else {
-          res = res - (m1 - m2);
-        }
-
-      } else {
-        if(m1 - m2 > 0) {
-          res = m1 - m2;
-        }
-        else {
-          res = m2 - m1;
-        }
-      }
-      return res;
+  num diffTime(h1, m1, h2, m2) {
+    num res = 0;
+    if(h1 > h2) {
+      res = res + 60 * (h1 - h2);
+      if(m1 - m2 > 0) { res = res + (m1 - m2); }
+      else { res = res - (m2 - m1); }
+    }
+    else if(h1 < h2) {
+      res = res + 60 * (h2 - h1);
+      if(m2 - m1 > 0) { res = res + (m2 - m1); }
+      else { res = res - (m1 - m2); }
+    } 
+    else {
+      if(m1 - m2 > 0) { res = m1 - m2; }
+      else { res = m2 - m1; }
+    }
+    return res;
   }
 
   @override
