@@ -72,63 +72,63 @@ class _State extends State<LoginPage> {
             padding: EdgeInsets.all(10),
             child: ListView(
               children: <Widget>[
+                SizedBox(
+                  height: 80,
+                  width: 200,
+                ),
+                SizedBox(
+                    height: 150,
+                    width: 200,
+                    child: Image.asset('asset/gachiLogo.png')),
                 Container(
-                    alignment: Alignment.center,
-                    padding: EdgeInsets.all(10),
-                    child: Text(
-                      '같이탈래',
-                      style: TextStyle(
-                          color: Colors.pink,
-                          fontWeight: FontWeight.w500,
-                          fontSize: 30),
-                    )),
-                Container(
-                  padding: EdgeInsets.all(10),
+                  padding: EdgeInsets.fromLTRB(40, 30, 40, 5),
                   child: TextField(
                     controller: nameController,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
-                      labelText: 'User Name',
+                      labelText: 'ID',
+                      hintText: '아이디를 입력해주세요',
                     ),
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
+                  padding: EdgeInsets.fromLTRB(40, 10, 40, 0),
                   child: TextField(
                     obscureText: true,
                     controller: passwordController,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
-                      labelText: 'Password',
+                      labelText: 'PASSWORD',
+                      hintText: '비밀번호를 입력해주세요',
                     ),
                   ),
                 ),
                 Container(
-                    height: 50,
-                    margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
-                    padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                    child: RaisedButton(
-                      textColor: Colors.white,
-                      color: Colors.pink,
-                      child: Text('Login'),
-                      onPressed: () {
-                        // debugPrint(nameController.text);
-                        // debugPrint(passwordController.text);
-                        clickLogin(
-                            nameController.text, passwordController.text);
-                      },
-                    )),
+                  height: 50,
+                  margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
+                  padding: EdgeInsets.fromLTRB(40, 10, 40, 0),
+                  child: FloatingActionButton(
+                    child: Text('로그인 하기'),
+                    onPressed: () {
+                      // debugPrint(nameController.text);
+                      // debugPrint(passwordController.text);
+                      clickLogin(nameController.text, passwordController.text);
+                    },
+                    backgroundColor: Colors.pink[600],
+                    isExtended: true,
+                  ),
+                ),
                 Container(
                     child: Row(
                   children: <Widget>[
-                    Text('Does not have account?'),
+                    Text('아직 회원이 아니신가요?'),
                     TextButton(
                       style: TextButton.styleFrom(
                         primary: Colors.pink,
                       ),
                       child: Text(
-                        'Sign in',
-                        style: TextStyle(fontSize: 20),
+                        '회원가입',
+                        style: TextStyle(fontSize: 18),
                       ),
                       onPressed: () {
                         //signup screen
