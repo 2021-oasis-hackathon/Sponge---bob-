@@ -3,6 +3,7 @@ import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'secrets.dart';
 import 'dart:math' show cos, sqrt, asin;
 
@@ -453,39 +454,18 @@ class _MapViewState extends State<MapView> {
                           ),
                           //밑의 예약시간 설정버튼은 경로설정 버튼을 복붙함, 수정필요
                           ElevatedButton(
-                            onPressed: (_startAddress != '' &&
-                                    _destinationAddress != '')
-                                ? () async {
-                                    startAddressFocusNode.unfocus();
-                                    desrinationAddressFocusNode.unfocus();
-                                    setState(() {
-                                      if (markers.isNotEmpty) markers.clear();
-                                      if (polylines.isNotEmpty)
-                                        polylines.clear();
-                                      if (polylineCoordinates.isNotEmpty)
-                                        polylineCoordinates.clear();
-                                      _placeDistance = null;
-                                    });
-
-                                    _calculateDistance().then((isCalculated) {
-                                      if (isCalculated) {
-                                        ScaffoldMessenger.of(context)
-                                            .showSnackBar(
-                                          SnackBar(
-                                            content: Text('최단경로 검색완료!'),
-                                          ),
-                                        );
-                                      } else {
-                                        ScaffoldMessenger.of(context)
-                                            .showSnackBar(
-                                          SnackBar(
-                                            content: Text('경로탐색을 실패했습니다'),
-                                          ),
-                                        );
-                                      }
-                                    });
-                                  }
-                                : null,
+                            onPressed: () {
+                              DatePicker.showDateTimePicker(context,
+                                  showTitleActions: true, onChanged: (date) {
+                                print('change $date in time zone ' +
+                                    date.timeZoneOffset.inHours.toString());
+                              }, onConfirm: (date) {
+                                print('confirm $date');
+                              },
+                                  currentTime:
+                                      DateTime(2021, 08, 19, 13, 12, 34),
+                                  locale: LocaleType.ko);
+                            },
                             child: Padding(
                               padding: const EdgeInsets.only(
                                   left: 77.0, right: 77.0),
