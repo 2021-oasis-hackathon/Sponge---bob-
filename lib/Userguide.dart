@@ -50,9 +50,9 @@ class SlideScreen extends StatelessWidget {
           },
           backgroundColor: Color(0xffE20080),
           label: const Text(
-            '안내사항을 확인했습니다',
+            '닫기',
             style: TextStyle(
-              fontSize: 16,
+              fontSize: 20,
               fontWeight: FontWeight.bold,
             ),
           ),
