@@ -11,7 +11,7 @@
 - SDK: >=2.12.0 <3.0.0
 
 ### Demonstration
-[Demonstration Video: https://www.youtube.com/watch?v=Q4mYoIkVI0I](https://www.youtube.com/watch?v=Q4mYoIkVI0I)
+<a href="#"><img src='./img/demonstration.gif'>
 
 ### Main
 <a href="#"><img src='./img/fig1.jpg'>
